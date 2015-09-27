@@ -1,5 +1,5 @@
 # Party-Tracker
-Once upon a time I published a phone app.
+Once upon a time I published a phone app. Fall 2014.
 
 # About
 This phone app took about 3 months. I'm not counting the first 2 months of procrastination and an very poor attempt to write it in C++. It is definitely true that some tasks are more difficult if you're using the wrong tools. Many sleepless nights were had. Looking back, I wish I had known about computer networks then. I may have re-invented the wheel many, many times with this.
