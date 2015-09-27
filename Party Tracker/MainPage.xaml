@@ -1,0 +1,126 @@
+﻿<Page
+    x:Class="Party_Tracker.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Party_Tracker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <local:bt_device_Name_BindingConverter x:Key="bt_name_converter"></local:bt_device_Name_BindingConverter>
+        <local:bt_device_HostName_BindingConverter x:Key="bt_hostname_convert"></local:bt_device_HostName_BindingConverter>
+        <local:loadingScreen_BindingConverter x:Key="loading_binding_converter"></local:loadingScreen_BindingConverter>
+        <DataTemplate x:Key="ListView_data_template">
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{Binding ItemImage}" />
+
+                <Grid Grid.Column="1" Margin="10,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                       <!-- <RowDefinition Height="Auto" /> -->
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left"
+                               Text="{Binding Title}"
+                               VerticalAlignment="Top"
+                               Margin="0,0,0,0"
+                               Style="{StaticResource ListViewItemTextBlockStyle}" />
+                   <!-- <TextBlock HorizontalAlignment="Left"
+                               Text="{Binding Subtitle}"
+                               VerticalAlignment="Top"
+                               Margin="0,0,0,0"
+                               Style="{StaticResource ListViewItemSubheaderTextBlockStyle}" /> -->
+                </Grid>
+
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListView_bt_device_template">
+            <Grid Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <!--<RowDefinition Height="Auto" /> -->
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="{Binding Converter={StaticResource bt_name_converter}}"
+                           Style="{StaticResource ListViewItemTextBlockStyle}" />
+                <!--<TextBlock Grid.Row="1" HorizontalAlignment="Left"
+                           Text="{Binding Converter={StaticResource bt_hostname_convert}}"
+                           Style="{StaticResource ListViewItemSubheaderTextBlockStyle}" /> -->
+            </Grid>
+
+        </DataTemplate>
+
+
+    </Page.Resources>
+
+
+    <Grid>
+        <Grid x:Name="grid_Loading" Visibility="Collapsed" Canvas.ZIndex="1" Background="Black"  HorizontalAlignment="Stretch" Opacity="0.8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ProgressBar Grid.Row="1" IsIndeterminate="True"/>
+            <TextBlock Grid.Row="2" Text="Connecting..." FontSize="17" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Text="This could take a few seconds." FontSize="17" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Text="Please do not close the application." FontSize="17" Foreground="White" HorizontalAlignment="Center"/>
+          
+        </Grid>
+        <ScrollViewer Canvas.ZIndex="0" VerticalAlignment="Stretch" Margin="0,10,0,10">
+            <!-- The XAML that should be hidden goes here (In my case LOGIN PAGE XAML) -->
+            <Grid x:Name="LayoutRoot" Margin="10,0,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" x:Name="Title">
+                    <TextBlock Text="Start a party!" Margin="0,0,0,0" Style="{ThemeResource TitleTextBlockStyle}" />
+                </Grid>
+
+                <Grid Grid.Row="1" x:Name="Bluetooth_grid">
+                    <ListView x:Name ="bt_devices_list"  SelectionMode="Multiple" Background="Transparent" BorderBrush="Transparent" ItemTemplate="{StaticResource ListView_bt_device_template}"/>
+                </Grid>
+
+                <Grid Grid.Row="2" x:Name="Refresh_peers_grid">
+                    <Button x:Name="Refrseh_peers_button" Content="Scan for friends!" HorizontalAlignment="Center" Click="Refresh_peers_Click" Margin="0,0,0,0" Width="360"/>
+                </Grid>
+
+                <Grid Grid.Row="3" x:Name="connect_to_selected_display_grid">
+                    <Button x:Name="connect_to_selected_button" Content="Connect to Selected" HorizontalAlignment="Center" Click="connect_to_selected_Click"  Margin="0,0,0,0" Width="360"/>
+                </Grid>
+                
+                <Grid Grid.Row="4" x:Name="cancel_grid">
+                    <Button x:Name="cancel_button" Content="Cancel" HorizontalAlignment="Center" Click="cancel_button_Click"  Margin="0,0,0,0" Width="360" Visibility="Collapsed"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+        
+    <Page.BottomAppBar>
+        <CommandBar x:Name="baa_commandbar" >
+            <AppBarButton x:Name="abb_settings" Label="Settings" Click="abb_settings_Click">
+                <SymbolIcon Symbol="Setting" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+            </AppBarButton>
+            <AppBarButton x:Name="abb_about" Label="About" Click="abb_about_Click">
+                <SymbolIcon  HorizontalAlignment="Center"  VerticalAlignment="Center" Symbol="Help"/>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

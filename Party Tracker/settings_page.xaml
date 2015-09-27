@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="Party_Tracker.settings_page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Party_Tracker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Grid x:Name="LayoutRoot" Margin="10,0,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" x:Name="grid_Page_title">
+            <TextBlock Text="Settings" Style="{StaticResource TitleTextBlockStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" x:Name="grid_User_ID">
+            <StackPanel x:Name="panel_User_ID" Margin="0,0,0,0">
+                <TextBlock Text="User Name:" />
+                <TextBox x:Name="tb_username" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" x:Name="grid_Phone_No">
+            <StackPanel x:Name="panel_Phone_No" Margin="0,0,0,0">
+                <TextBlock Text="Phone Number (numbers only):" />
+                <TextBox x:Name="tb_Phone_No" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" x:Name="grid_location_setting">
+            <StackPanel x:Name="panel_location_setting" Margin="0,0,0,0">
+                <TextBlock Text="Toggle Location Settings:" />
+                <TextBlock Text="(Disabling location may limit functionality)" />
+                <Button Content="Toggle Location Settings" HorizontalAlignment="Center" Click="Button_Click"/>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Row="4" x:Name="grid_save_Button">
+            <Button x:Name="bt_save_settings" Content="Save settings" HorizontalAlignment="Stretch" Click="bt_save_settings_Click"/>
+        </Grid>
+
+    </Grid>
+</Page>

@@ -1,0 +1,27 @@
+<ContentDialog
+    x:Class="Party_Tracker.ContentDialog_settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Party_Tracker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="This is your first run!"
+    PrimaryButtonText="Go to Settings"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock x:Name="message" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    Hey there, before starting, please make sure that Bluetooth and Location are enabled. We'll also need to enter some settings.
+                </TextBlock.Text>
+            </TextBlock>
+        </Grid>
+    </Grid>
+
+</ContentDialog>
